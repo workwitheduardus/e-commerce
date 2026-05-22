@@ -1,8 +1,8 @@
 "use client";
 
+import { getProducts } from "@/lib/api";
 import { formatPrice } from "@/lib/format";
 import type { Product } from "@/lib/types";
-import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -12,10 +12,9 @@ export default function CsrProducts() {
   const [fetchedAt, setFetchedAt] = useState<string | null>(null);
 
   useEffect(() => {
-    axios
-      .get<Product[]>("https://fakestoreapi.com/products?limit=4")
-      .then((res) => {
-        setProducts(res.data);
+    getProducts(4)
+      .then((data) => {
+        setProducts(data);
         setFetchedAt(new Date().toLocaleTimeString());
       })
       .finally(() => setLoading(false));

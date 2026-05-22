@@ -3,6 +3,7 @@ import Link from "next/link";
 
 export default async function CategoriesPage() {
   const categories = await getCategories();
+
   return (
     <div>
       <h1 className="mb-4 text-2xl font-semibold">Kategori</h1>
